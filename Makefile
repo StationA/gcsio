@@ -1,14 +1,12 @@
-tools:
-	@go install github.com/golang/dep/cmd/dep
+deps:
+	go mod tidy
+	go mod verify
 
-deps: tools
-	dep ensure
-
-build: tools
+build: deps
 	@go build -o target/gcsio ./...
 
 install: build
-	@go install ./...
+	@go install ./cmd/...
 
 target:
 	mkdir -p target
