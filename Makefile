@@ -3,7 +3,7 @@ deps:
 	go mod verify
 
 build: deps
-	@go build -o target/gcsio ./...
+	@go build -o target/ ./cmd/gcsio
 
 install: build
 	@go install ./cmd/...
@@ -12,7 +12,7 @@ target:
 	mkdir -p target
 
 release: build target
-	@CGO_ENABLED=0 go build -a -o target/gcsio ./cmd/gcsio
+	@CGO_ENABLED=0 go build -a -o target/ ./cmd/gcsio
 
 release-all: build target
 	@CGO_ENABLED=0 GOOS=darwin GOARCH=386 go build -a -o target/gcsio.darwin-386 ./cmd/gcsio
